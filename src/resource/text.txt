@@ -1,0 +1,25 @@
+	When dealing with Tree-structured data, programmers often have to discriminate between a leaf-node and a branch. This makes code more complex, and therefore, error prone. The solution is an interface that allows treating complex and primitive objects uniformly. In object-oriented programming, a composite is an object designed as a composition of one-or-more similar objects, all exhibiting similar functionality. 
+	This is known as a "has-a" relationship between objects. The key concept is that you can manipulate a single instance of the object just as you would manipulate a group of them. The operations you can perform on all the composite objects often have a least common denominator relationship. For example, if defining a system to portray grouped shapes on a screen, it would be useful to define resizing a group of shapes to have the same effect (in some sense) as resizing a single shape.
+##Listing
+	class CompositeGraphic implements Graphic {
+     	private List<Graphic> childGraphics = new ArrayList<Graphic>();
+ 
+    //Prints the graphic.
+    public void print() {
+        for (Graphic graphic : childGraphics) {
+            graphic.print();
+        }
+    }
+ 
+    //Adds the graphic to the composition.
+    public void add(Graphic graphic) {
+        childGraphics.add(graphic);
+    }
+ 
+    //Removes the graphic from the composition.
+    public void remove(Graphic graphic) {
+        childGraphics.remove(graphic);
+    }
+}
+##
+	Composite can be used when clients should ignore the difference between compositions of objects and individual objects. If programmers find that they are using multiple objects in the same way, and often have nearly identical code to handle each of them, then composite is a good choice; it is less complex in this situation to treat primitives and composites as homogeneous.
